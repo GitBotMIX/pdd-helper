@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="{% static 'pdd/css/main.css' %}">
+
+	<title>PDD HELPER</title>
+
+</head>
+<body>
+	<div class="load" id="load"></div>
+	<div class="main__text">
+		<a href="#" class="pdd" id="pdd-id2" onclick="clickDelayPdd()"><p id="pdd-id" class="pdd-id">PDD</p></a>
+		<a href="#" class="helper" onclick="clickDelayHelper()"><p id="helper-id" class="helper-id">HELPER</p></a>
+	</div>
+
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+
+				AOS.init({
+  // Global settings:
+  disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+  startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+  initClassName: 'aos-init', // class applied after initialization
+  animatedClassName: 'aos-animate', // class applied on animation
+  useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+  disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+  debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+  throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+  offset: 70, // offset (in px) from the original trigger point
+  delay: 0, // values from 0 to 3000, with step 50ms
+  duration: 800, // values from 0 to 3000, with step 50ms
+  easing: 'ease', // default easing for AOS animations
+  once: false, // whether animation should happen only once - while scrolling down
+  mirror: false, // whether elements should animate out while scrolling past them
+  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+});
+  function clickDelayHelper() {
+      let pddId = document.getElementById('pdd-id');
+      let helperId = document.getElementById('helper-id');
+      setTimeout(function(){pddId.classList.add('pdd-close-anim'); helperId.classList.add('helper-start-anim');}, 100)
+      //document.getElementById("pdd-id").remove();
+    setTimeout(function(){ openedWindow = window.open('helper', "_self"); }, 2000);
+  }
+  function clickDelayPdd() {
+      let pddId = document.getElementById('pdd-id');
+      let helperId = document.getElementById('helper-id');
+      setTimeout(function(){pddId.classList.add('pdd-start-anim'); helperId.classList.add('helper-close-anim');}, 100)
+      //document.getElementById("pdd-id").remove();
+    setTimeout(function(){ openedWindow = window.open('pdd', "_self"); }, 2000);
+  }
+  function load() {
+  	let load = document.getElementById("load");
+  	load.classList.add('load-close');
+  }
+	setTimeout(load, 2200);
+	setTimeout(() => document.getElementById("pdd-id2").classList.add('opacity-1'), 1500);
+	setTimeout(() => document.getElementById("load").remove(), 4200);
+	</script>
+
+</body>
+</html>

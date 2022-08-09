@@ -1,0 +1,123 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<title>Helper</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'pdd/css/helper.css' %}">
+</head>
+<body>
+
+	<div class="main-logo" id="main-logo-id">
+		<p class="main-logo-text">HELPER</p>
+	</div>
+	<div class="image-container">
+		<div class="helper-image-logo-box" data-aos="fade-in" data-aos-delay="1000">
+			<a href="{% url 'home' %}">
+				<img src="{% static 'pdd/img/helper-logo.png' %}" alt="" class="helper-image-logo">
+			</a>
+		</div>
+		<div class="helper-image-body-box" data-aos="fade-in" data-aos-delay="1400">
+			<img src="{% static 'pdd/img/helper-body.png' %}" alt="" class="helper-image-body">
+		</div>
+
+		<div class="date-start-close">
+			<p class="date-start" data-aos="fade-up" data-aos-delay="1700">Запустив программу, можно увидеть текущую дату и ВК автора</p>
+			<p class="date-close" data-aos="fade-up" data-aos-delay="1900">Дата окончания активации</p>
+		</div>
+
+		<div class="manual-box" data-aos="fade-in" data-aos-delay="2800" data-aos-duration="2500">
+			<h1 class="manual-start">Инструкция по запуску</h1>
+			<li>Для начала нужно включить диспетчер задач(CTRL + ALT + ESC) поверх всех окон <img src="{% static 'pdd/img/over-all-windows.png' %}" alt="" class="image-manual"></li>
+			<li>Далее нажать CTRL + ALT + DEL и выбрать диспетчер задач</li>
+			<li>В диспетчере задач в верхней менюшке выбрать "файл"</li>
+			<li>Запустить новую задачу <img src="{% static 'pdd/img/File-start-process.png' %}" alt="" class="image-manual"></li>
+			<li>Обзор <img src="{% static 'pdd/img/new-proc-search.png' %}" alt="" class="image-manual"></li>
+			<li>Слева в проводнике выбрать флешку(PDD HELPER)</li>
+			<li>Открыть папку Pdd_helper</li>
+			<li>Открыть файл Pdd_helper.exe<img src="{% static 'pdd/img/helper-start-proc.png' %}" alt="" class="image-manual-max"></li>
+			<h1 class="manual-soft">Инструкция по программе</h2>
+			<li>Программа сама будет нажимать правильную цифру ответа, твоя задача только нажимать ENTER</li>
+			<li>Если программа не дала ответ в течение 15сек. значит она не знает ответ</li>
+		</div>
+
+
+		<div class="questions-box">
+			<h2 class="question-one" class="manual-box" data-aos="fade-in" data-aos-duration="1000">Что значит дата до окончания активации?</h2>
+			<p class="question-one" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="300">Программа работает только до даты которая указана в программе,
+				после окончания активации, программа соответственно работать не будет.</p>
+
+			<h2 class="question-two" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="200">Как активировать программу?</h2>
+			<p class="question-two" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="500">Чтобы активировать программу необходимо написать <a href="#about">сюда.</a></p>
+
+			<h2 class="question-three" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="400">Программа не работает, что делать?</h2>
+			<p class="question-three" data-aos="fade-in" data-aos-duration="1000" data-aos-delay="700">Если по каким-то причинам программа перестала работать,
+			необходимо написать сюда. </p>
+		</div>
+
+		<div class="about-box" id="about" data-aos="fade-up" data-aos-duration="1000">
+			<a class="vk-box" href="https://vk.com/nikitamixxxx" target="_blank">
+				<img src="{% static 'pdd/img/vk_logo.png' %}" alt="" class="vk" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+			</a>
+			<a class="gmail-box" href="https://mail.google.com/mail/u/0/#inbox/QgrcJHsBmFvwqdMwdVkjQGjjlfVVxfqxJcQ" target="_blank">
+				<img src="{% static 'pdd/img/gmail_logo.png' %}" alt="" class="gmail" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+			</a>
+			<a class="telegram-box" href="https://web.telegram.org/z/#1638399701" target="_blank">
+				<img src="{% static 'pdd/img/telegram_logo.png' %}" alt="" class="telegram" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="900">
+			</a>
+
+		</div>
+
+	</div>
+
+
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script type="text/javascript">
+		AOS.init({
+  // Global settings:
+  disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+  startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+  initClassName: 'aos-init', // class applied after initialization
+  animatedClassName: 'aos-animate', // class applied on animation
+  useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+  disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+  debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+  throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+  offset: 20, // offset (in px) from the original trigger point
+  delay: 0, // values from 0 to 3000, with step 50ms
+  duration: 800, // values from 0 to 3000, with step 50ms
+  easing: 'ease', // default easing for AOS animations
+  once: true, // whether animation should happen only once - while scrolling down
+  mirror: false, // whether elements should animate out while scrolling past them
+  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+});
+
+
+	function BodyRemoveScrollLock() {
+    	const body = document.body;
+    	body.classList.remove('scroll-Lock');
+    	document.getElementById("main-logo-id").remove();
+
+	}
+	function BodyAddScrollLock() {
+    	const body = document.body;
+    	body.classList.add('scroll-Lock');
+	}
+	function startAnim() {
+		let mainLogo = document.getElementById('main-logo-id');
+		mainLogo.classList.add('start-anim');
+	}
+	BodyAddScrollLock()
+	setTimeout(startAnim, 800)
+	setTimeout(BodyRemoveScrollLock, 2500)
+
+
+	</script>
+</body>
+</html>

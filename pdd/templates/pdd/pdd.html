@@ -1,0 +1,146 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }}</title>
+	<link rel="stylesheet" href="{% static 'pdd/css/pdd.css' %}">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+	<div class="main-logo" id="main-logo-id">
+		<p class="main-logo-text">PDD</p>
+	</div>
+	<div class="popup-background" id="popup-background" onclick="popup_close()">
+		<div class="correct-answer" id="correct-answer"></div>
+		<div class="popup-content-box" id="popup-content-box">
+
+		</div>
+	</div>
+	<div class="search-input" id="search-input">
+		<input type="text" id="input" class="input" onkeyup="tableSearch()" placeholder="Вопрос или ответ" />
+	</div>
+
+	<a class="search-button" onclick="search_button()">
+		<img class="search-image" id="search-button" src="{% static 'pdd/img/search.png' %}">
+	</a>
+
+
+
+	<div class="main__text" data-aos="header-anim">
+		<a class="header" href="index.html">PDD HELPER</a>
+	</div>
+
+
+	<div class="table" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" data-aos-delay="1500">
+		<table id="info-table">
+
+			<div>
+				<tr>
+					<th data-aos="fade-right" data-aos-duration="1000" data-aos-delay="1500">Вопрос</th>
+					<th data-aos="fade-left" data-aos-duration="1000" data-aos-delay="1500">Ответ</th>
+				</tr>
+			</div>
+			{% for el in questions %}
+			<tr>
+				<td><a href="javascript:popup_open({{ forloop.counter }}, {{ el.correctNumber }})">{{ el.question }}</a></td>
+				<td>{{ el.answer }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		AOS.init({
+  // Global settings:
+  disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+  startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+  initClassName: 'aos-init', // class applied after initialization
+  animatedClassName: 'aos-animate', // class applied on animation
+  useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+  disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+  debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+  throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+
+  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+  offset: 20, // offset (in px) from the original trigger point
+  delay: 0, // values from 0 to 3000, with step 50ms
+  duration: 800, // values from 0 to 3000, with step 50ms
+  easing: 'ease', // default easing for AOS animations
+  once: false, // whether animation should happen only once - while scrolling down
+  mirror: false, // whether elements should animate out while scrolling past them
+  anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+});
+	function BodyRemoveScrollLock() {
+    	const body = document.body;
+    	body.classList.remove('scroll-Lock');
+    	document.getElementById("main-logo-id").remove();
+
+	}
+	function BodyAddScrollLock() {
+    	const body = document.body;
+    	body.classList.add('scroll-Lock');
+	}
+	function startAnim() {
+		let mainLogo = document.getElementById('main-logo-id');
+		mainLogo.classList.add('start-anim');
+	}
+	function search_button() {
+		let searchButton = document.getElementById('search-button');
+		let searchInput = document.getElementById('input');
+		searchButton.classList.add('search-anim-button');
+		searchInput.classList.add('search-anim-input');
+	}
+	BodyAddScrollLock()
+	setTimeout(startAnim, 1000)
+	setTimeout(BodyRemoveScrollLock, 1000)
+
+	function popup_open(screenNumber, numberCorrect) {
+		const popupBackground = document.getElementById('popup-background');
+		popupBackground.classList.add('popup-show');
+		const popupContentBox = document.getElementById('popup-content-box');
+		const correctAnswerNumber = document.getElementById('correct-answer');
+
+		const correctNumber = `
+			<p>ПРАВИЛЬНЫЙ ОТВЕТ: <font color="#94FF8F">`+ numberCorrect +`</font></p>
+		`;
+		const img = `
+			<img src="/media/images/screenshot` + screenNumber + `.png" alt="screen ` + screenNumber + `">
+		`;
+		console.log(img);
+		correctAnswerNumber.innerHTML = correctNumber;
+		popupContentBox.innerHTML = img;
+	}
+	function popup_close() {
+		const popupBackground = document.getElementById('popup-background');
+		popupBackground.classList.remove("popup-show");
+	}
+
+
+	function tableSearch() {
+    var phrase = document.getElementById('input');
+    var table = document.getElementById('info-table');
+    var regPhrase = new RegExp(phrase.value, 'i');
+    var flag = false;
+    for (var i = 1; i < table.rows.length; i++) {
+        flag = false;
+        for (var j = table.rows[i].cells.length - 1; j >= 0; j--) {
+            flag = regPhrase.test(table.rows[i].cells[j].innerHTML);
+            if (flag) break;
+        }
+        if (flag) {
+            table.rows[i].style.display = "";
+        } else {
+
+            table.rows[i].style.display = "none";
+        }
+
+    }
+}
+
+	</script>
+</body>
+</html>
